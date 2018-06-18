@@ -1,0 +1,52 @@
+---
+title: "Part I"
+author: "Faye Wang"
+date: "2018/6/17"
+output: html_document
+---
+First, get the data from the World Bank API and do some basic data wrangling.       
+
+```{r echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+# install package
+#install.packages('wbstats')
+library(wbstats)
+library(ggplot2)
+
+# get the full data
+data = wb(indicator = "SH.STA.ACSN", startdate = 1960, enddate = 2017)
+# take a look at the data
+head(data)
+
+# get the income group
+wbincome(lang = "en")
+# HIC, LIC, LMC, LMY, MIC, UMC
+# make a subset of data
+# include world and income groups
+wd = wb(indicator = "SH.STA.ACSN", country = c("WLD", "HIC", "LMC", "MIC", "UMC"), startdate = 1960, enddate = 2018)
+summary(wd)
+# make the date to numeric 
+wd$date = as.factor(wd$date)
+table(wd$date)
+# check for missing value
+apply(wd, 2, function(x) any(is.na(x)))
+
+```
+
+Based on the data I got from last step, the visualizartion that I made is shown below.      
+     
+     
+```{r echo=FALSE,message=FALSE, fig.width=10, fig.asp = 0.618, out.width="90%",fig.align = "center"}
+
+# make visulization
+ggplot(wd, aes(x = date, y = value,  group = country,colour = country)) + geom_point(alpha = 0.5) +
+  stat_smooth(linetype = 1,alpha = 0.1,se = FALSE)+
+  scale_x_discrete("Year", breaks = c("1985","1990","1995","2000","2005","2010","2015"))+ 
+  labs(title = "Trends of Improved Sanitation Facilities Access",
+       y = "Improved Sanitation Facilities (% of population with access) ",
+       color="Group",
+       caption = "Data from WDI Database Archives") +
+  theme_bw()
+
+```
+        
+The plot above shows the trend of the percentage of population with access to improved sanitation facilities. The purple line shows the overall trend of all countries. The line has a downward trend before 1995, then goes up until 2006 and goes down again. Overall, it has a downward trend. The trends vary by income group. The lower middle income and high income group follow the similar downward--upward--downward trend to the world overall trend, while middle income and upper middle income group have upward trends before 2006 and then an downward trends. Overall, the lower middle income group has a slightly downward trend; the middle income and upper middle income have slightly upward trends. High income group have overall downward trend and has a steeper trend slope than other groups. Over the years, the differences of the percentage of population with access to improved sanitation facilities between the different income groups get smaller. 

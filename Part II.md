@@ -1,0 +1,6 @@
+# Part II
+The plot in the email shows a histogram of the life expectancy of 919 World Bank retirees. 
+The range of a histogram describes the difference between the greatest and least values in the data. It is correct that the distribution is wide since the lowest bound is close to 50 (53.5) and the highest bound is over 100.  It tells us some retires died around their 50s as stated in the claim.  
+The next claim about the other extreme is actually an outlier. To be more accurate, the statement should be there is one person falls in the interval between 83.5 to 84.5. 
+Also, since the histogram is not normal and it is left-skewed, the mean and the median are not the same and the mean is less than the median. It is better to use the median as the typical value to represent the data. As stated in the email, the mean for this distribution is 81 years old and we can tell that the mode is in the interval from 83.5 to 84.5. The median should fall in the interval between the mean and the mode. Then, the median is quite close to the U.S. average. 
+Moreover, the next claim says “a man and woman reaching age 65 today can expect to live, on average, to ages 84.4 and 86.6, respectively”. It already assumes a person lives longer than 65 years and these are estimates of the mean.  It is not appropriate to compare these number to the sample mean of the World Bank data. 
